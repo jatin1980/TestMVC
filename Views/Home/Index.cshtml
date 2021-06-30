@@ -1,0 +1,48 @@
+﻿@model IEnumerable<TestMVC.Models.ApplicationUser>
+
+@{
+    ViewData["Title"] = "Home Page";
+    int i = 0;
+}
+
+@*<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>*@
+<div class="row">
+
+    <div class="col-md-12">
+        <h2>Who are you :</h2>
+
+        <form action="/Home/ConfirmUser" method="post">
+
+            <div class="form-group">
+                <label for="email">Who are you:</label>
+
+
+                <select id="UserId" name="UserId" class="form-control">
+                    @foreach (var item in Model)
+                    {
+                        if (i == 0)
+                        {
+                            <option value="@item.Id" selected>@item.UserName</option>
+                        }
+                        else
+                        {
+                            <option value="@item.Id">@item.UserName</option>
+                        }
+                        i++;
+                    }
+
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-default">Confirm</button>
+            <br />
+            <a  class="btn btn-default" href="/Home/AddNewUser">Not in List?</a>
+
+        </form>
+
+    </div>
+
+</div>
